@@ -17,7 +17,7 @@
         <br/>
         <input name="field-name"
           type=text
-          value=" "/>
+          value=""/>
       </label>
    <br/>
 
@@ -67,7 +67,7 @@
       </label><br/>
 
       <label>
-        С контрактом ознакомлен (а):<input type="checkbox" checked="checked" name="check"/>
+        С контрактом ознакомлен (а):<input type="checkbox" name="check"/>
       </label>
       <br/>
 
