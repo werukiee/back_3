@@ -37,7 +37,7 @@ try{
         print('Вы должны быть согласны с условиями.<br/>');
         $errors = TRUE;
     }
-}
+
     
     if ($errors) {
       // При наличии ошибок завершаем работу скрипта.
@@ -68,6 +68,7 @@ try{
     $user1 = $conn->prepare("INSERT INTO super SET id = ?, super_name = ?");
     $user1 -> execute([$id_user, $sup]);
     $result = true;
+}
     //  user и user1 - это "дескриптор состояния".
 catch(PDOException $e){
     print('Error : ' . $e->getMessage());
