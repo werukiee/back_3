@@ -63,11 +63,11 @@
 
       <label>
         Биография:<br />
-        <textarea name="bio"></textarea>
+        <textarea name="bio1"></textarea>
       </label><br/>
 
       <label>
-        С контрактом ознакомлен (а):<input type="checkbox" name="check"/>
+        С контрактом ознакомлен (а):<input type="checkbox" checked="checked" name="ch1"/>
       </label>
       <br/>
 

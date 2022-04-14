@@ -29,11 +29,11 @@ try{
         $errors = TRUE;
     }
 
-    if (empty($_POST['BIO'])) {
+    if (empty($_POST['bio1'])) {
         print('Заполните биографию.<br/>');
         $errors = TRUE;
     }
-    if (empty($_POST['ch'])) {
+    if (empty($_POST['ch1'])) {
         print('Вы должны быть согласны с условиями.<br/>');
         $errors = TRUE;
     }
@@ -48,24 +48,25 @@ try{
     $email = $_POST['field-email'];
     $dob = $_POST['field-date'];
     $gender = $_POST['radio-gender'];
-    $limbs = $_POST['radio-limb'];
-    $bio = $_POST['bio'];
-    $chec = $_POST['check'];
+    $limb = $_POST['radio-limb'];
+    $bioo = $_POST['bio1'];
+    $ch = $_POST['ch1'];
     
     //Объединяет элементы массива в строку
     $sup= implode(",",$_POST['superpower']);
 
     //Представляет собой соединение между PHP и сервером базы данных.
-    $conn = new PDO("mysql:host=localhost;dbname=u41733", 'u41810', '3516685', array(PDO::ATTR_PERSISTENT => true));
+    $conn = new PDO("mysql:host=localhost;dbname=u41810", 'u41810', '3516685', array(PDO::ATTR_PERSISTENT => true));
 
     //Подготавливает инструкцию к выполнению и возвращает объект инструкции
-    $user = $conn->prepare("INSERT INTO form SET name = ?, email = ?, dob = ?, gender = ?, limbs = ?, bio = ?, chec = ?");
+    $id_user = $conn->lastInsertId();
+    $user = $conn->prepare("INSERT INTO form SET id = ?, nameku = ?, email = ?, dob = ?, gender = ?, limb = ?, bioo = ?, ch = ?");
 
     //Запускает подготовленный запрос на выполнение
-    $user -> execute([$_POST['field-name'], $_POST['field-email'], date('Y-m-d', strtotime($_POST['field-date'])), $_POST['radio-gender'], $_POST['radio-limb'], $_POST['bio'], $_POST['check']]);
-    $id_user = $conn->lastInsertId();
+    
+    $user -> execute([$id_user, $_POST['field-name'], $_POST['field-email'], date('Y-m-d', strtotime($_POST['field-date'])), $_POST['radio-gender'], $_POST['radio-limb'], $_POST['bio1'], $_POST['ch1']]);
 
-    $user1 = $conn->prepare("INSERT INTO super SET id = ?, super_name = ?");
+    $user1 = $conn->prepare("INSERT INTO super SET id = ?, superpowerr = ?");
     $user1 -> execute([$id_user, $sup]);
     $result = true;
 }
