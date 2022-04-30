@@ -16,10 +16,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 }
 
 $result;
-$errors = FALSE;
+
 // Иначе, если запрос был методом POST, т.е. нужно проверить данные и сохранить их в XML-файл.
 try{
     // Проверяем ошибки.
+    $errors = FALSE;
     if (empty($_POST['field-name'])) {
         print('Заполните имя.<br/>');
         $errors = TRUE;
@@ -29,11 +30,11 @@ try{
         $errors = TRUE;
     }
 
-    if (empty($_POST['bio1'])) {
+    if (empty($_POST['biography'])) {
         print('Заполните биографию.<br/>');
         $errors = TRUE;
     }
-    if (empty($_POST['ch1'])) {
+    if (empty($_POST['chick'])) {
         print('Вы должны быть согласны с условиями.<br/>');
         $errors = TRUE;
     }
@@ -46,11 +47,11 @@ try{
     //передаем данные в переменные
     $name = $_POST['field-name'];
     $email = $_POST['field-email'];
-    $dob = $_POST['field-date'];
+    $data = $_POST['field-date'];
     $gender = $_POST['radio-gender'];
-    $limb = $_POST['radio-limb'];
-    $bioo = $_POST['bio1'];
-    $ch = $_POST['ch1'];
+    $konech = $_POST['radio-konech'];
+    $bio = $_POST['biography'];
+    $chebox = $_POST['chick'];
     
     //Объединяет элементы массива в строку
     $sup= implode(",",$_POST['superpower']);
@@ -59,26 +60,23 @@ try{
     $conn = new PDO("mysql:host=localhost;dbname=u41810", 'u41810', '3516685', array(PDO::ATTR_PERSISTENT => true));
 
     //Подготавливает инструкцию к выполнению и возвращает объект инструкции
-    $id_user = $conn->lastInsertId();
-    $user = $conn->prepare("INSERT INTO form SET id = ?, nameku = ?, email = ?, dob = ?, gender = ?, limb = ?, bioo = ?, ch = ?");
+    $user = $conn->prepare("INSERT INTO form SET id = ?,name = ?, email = ?, data = ?, gender = ?, konech = ?, bio = ?, chebox = ?");
 
     //Запускает подготовленный запрос на выполнение
-    
-    $user -> execute([$id_user, $_POST['field-name'], $_POST['field-email'], date('Y-m-d', strtotime($_POST['field-date'])), $_POST['radio-gender'], $_POST['radio-limb'], $_POST['bio1'], $_POST['ch1']]);
+    $id_user = $conn->lastInsertId();
+    $user -> execute([$id_user, $_POST['field-name'], $_POST['field-email'], date('Y-m-d', strtotime($_POST['field-date'])), $_POST['radio-gender'], $_POST['radio-konech'], $_POST['biography'], $_POST['chick']]);
 
-    $user1 = $conn->prepare("INSERT INTO super SET id = ?, superpowerr = ?");
+    $user1 = $conn->prepare("INSERT INTO super SET id = ?, super_name = ?");
     $user1 -> execute([$id_user, $sup]);
     $result = true;
-}
     //  user и user1 - это "дескриптор состояния".
+}
 catch(PDOException $e){
     print('Error : ' . $e->getMessage());
     exit();
 }
 
-
 if ($result) {
-  echo "Информация занесена в базу данных под ID №" . $id_user;
+    print('Данные были записаны в базу данных.<br/>');
 }
-//print - выводит строку, а echo - 1 или больше строк
 ?>

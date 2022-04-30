@@ -11,71 +11,53 @@
 <div class="block_form" id="forma">
   <div class="top_bot">
     <h1>Form</h1>
-    <form method="POST">
-      <label>
-        Введите Ваше имя:
-        <br/>
-        <input name="field-name"
-          type=text
-          value=""/>
-      </label>
-   <br/>
-
-      <label>
-        Введите Ваш email:
-        <br/>
-        <input name="field-email"
-          value="test@example.com"
-          type="email"/>
-      </label>
-      <br/>
-
-      <label>
-        Введите Вашу дату рождения:
-        <br/>
-        <input name="field-date"
-          value="2002-06-08"
-          type="date"/>
-      </label>
-      <br/>
-
-      Количество конечностей:<br/>
-      <label><input type="radio" checked="checked" name="radio-limb" value="Значение1" />1</label>
-      <label><input type="radio" name="radio-limb" value="Значение2"/>2</label>
-      <label><input type="radio" name="radio-limb" value="Значение2"/>3</label>
-      <label><input type="radio" name="radio-limb" value="Значение2"/>4</label>
-      <br/>
-
-      Пол:<br/>
-      <label><input type="radio" checked="checked" name="radio-gender" value="Значение1" />Мужской</label>
-      <label><input type="radio" name="radio-gender" value="Значение2"/>Женский</label>
-      <br/>
-
-      <label>
-        Сверхспособности:
-        <br/>
-        <select name="superpower[]" multiple="multiple">
-          <option value="Значение1">Бессмертие</option>
-          <option value="Значение2" selected="selected">Прохождение сквозь стены</option>
-          <option value="Значение3" selected="selected">Левитация</option>
-        </select>
-      </label><br/>
-
-      <label>
-        Биография:<br />
-        <textarea name="bio1"></textarea>
-      </label><br/>
-
-      <label>
-        С контрактом ознакомлен (а):<input type="checkbox" checked="checked" name="ch1"/>
-      </label>
-      <br/>
-
-      <label> 
-        Отправьте что-то:
-        <input type="submit" value="Отправить" />
-    </label>
-    </form>
+    <form method="POST" id="form">
+            <label>
+                Имя:<br />
+                <input type=text name="field-name" placeholder="Тервер Терверыч" />
+            </label><br />
+            <label>
+                Поле email:<br />
+                <input name="field-email" placeholder="example@test.com" type="email">
+            </label><br />
+            <label>
+                Дата рождения:<br />
+                <input name="field-date" value="2012-12-12" type="date" />
+            </label><br />
+            <label>Пол:</label><br />
+            <label class="radio"><input type="radio" checked="checked" name="radio-gender" value=1 />
+                Мужской</label>
+            <label class="radio"><input type="radio" name="radio-gender" value=0 />
+                Женский</label><br />
+            <label>Кол-во конечностей:</label><br />
+            <label class="radio"><input type="radio" checked="checked" name="radio-konech" value=0 />
+                0</label>
+            <label class="radio"><input type="radio" name="radio-konech" value=1 />
+                1</label>
+            <label class="radio"><input type="radio" name="radio-konech" value=2 />
+                2</label>
+            <label class="radio"><input type="radio" name="radio-konech" value=3 />
+                3</label>
+            <label class="radio"><input type="radio" name="radio-konech" value=4 />
+                4</label><br />
+            <label>
+                Ваши сверхспособности:<br />
+                <select multiple="true" name="superpower[]">
+                    <option value="Бессмертие">Бессмертие</option>
+                    <option value="Прохождение сквозь стены">Прохождение сквозь стены</option>
+                    <option value="Левитация">Левитация</option>
+                </select>
+            </label><br />
+            <label>
+                Биография:<br />
+                <textarea name="biography" placeholder="Расскажите о себе"></textarea>
+                <br />
+            </label>
+            <label>
+                <input name="chick" type="checkbox" checked=checked value=1> Ознакомлен с контрактом:<br />
+            </label>
+            <input type="submit" value="Отправить" />
+        </form>
  </div>
 </div>
 </body>
